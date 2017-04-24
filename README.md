@@ -47,6 +47,27 @@ Following VSCode commands and key bindings are exported by this extension.
 
 Key bindings can be changed via VSCode preferences.
 
+## Installation
+
+The extension is published on VSCode Marketplace at:
+
+  * https://marketplace.visualstudio.com/items?itemName=miconda.goto-symbol-stack
+
+To install it from the marketplace, launch VS Code Quick Open (`Cmd+P` or `⌘+P`), paste the following command, and press enter.
+
+```
+ext install goto-symbol-stack
+```
+
+To install from Git repository, clone it to your account VSCode folder (on MacOS or Linux, that is `~/.vscode/extensions`):
+
+```
+cd ~/.vscode/extensions
+git clone https://github.com/miconda/vscode-goto-symbol-stack
+```
+
+The extension needs to be enabled from VSCode preferences.
+
 ## Known Issues
 
 Tested only on MacOS on files with C code.
