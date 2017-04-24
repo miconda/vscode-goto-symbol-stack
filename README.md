@@ -6,6 +6,10 @@ It is relying on the same function used natively by VSCode to jump to the symbol
 
 The behaviour is somehow similar to jumping to `ctags` symbols in `Vim` editor and back to initial position (however, to make it clear, this extension does not require `ctags` at all).
 
+The code for this extension is hosted at:
+
+  * https://github.com/miconda/vscode-goto-symbol-stack
+
 ## Features
 
 The navigation operations are:
