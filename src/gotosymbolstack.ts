@@ -48,8 +48,11 @@ export class GoToSymbolStack {
         this.filePosStack[vStackIdx].textPosition = vTextEditor.selection.active;
     }
     logFilePosition(vTextMsg: string, vStackIdx: number) {
+        return;
+        /**
         console.log("GoToSymbolStack - " + vTextMsg + ": " + JSON.stringify(this.filePosStack[vStackIdx].textFile)
                 + " : " + JSON.stringify(this.filePosStack[vStackIdx].textPosition));
+        **/
     }
     testTopFilePosition(vTextEditor: vscode.TextEditor) {
         /* if same postion as previous one, return true, otherwise false */
