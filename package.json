@@ -2,7 +2,7 @@
     "name": "goto-symbol-stack",
     "displayName": "goto-symbol-stack",
     "description": "Jump to the declaration of a symbol, track positions in a stack, navigate back and forth",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "publisher": "miconda",
     "engines": {
         "vscode": "^1.10.0"

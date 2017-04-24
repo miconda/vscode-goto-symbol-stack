@@ -95,8 +95,13 @@ License: MIT
 
 ## Release Notes
 
+### 1.0.1 (2017-04-24)
+
+  * added a screencast to view usage of the module
+  * disabled console log messages when jumping
+
 ### 1.0.0 (2017-04-23)
 
-Initial release.
+  * initial release
 
 **Enjoy!**
