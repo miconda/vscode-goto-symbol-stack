@@ -2,9 +2,9 @@
 
 Extension for Visual Studio Code (VSCode) editor to jump to symbol (function, variable, ...) declaration, track the positions in a stack, navigate back and forth.
 
-It is relying on the same function used natively by VSCode to jump to the symbol (the one with default key `F12`), but the native jump back (default `Cmd/Ctrl+-`) is tracking differently the positions, therefore this module provides an alternative, storing the positions only when jump to symbol is triggered.
+It is relying on the same function used natively by VSCode to jump to the symbol (the one with default key `F12`), but the native jump back (default `Cmd/Ctrl+-`) is tracking differently the positions (eg., storing when editing or when scrolling and making a short break), therefore this module provides an alternative, storing the positions only when jump to symbol is triggered.
 
-The behaviour is somehow similar to jumping to `ctags` symbols in Vim editor and back to initial position (however, to make it clear, this extension does not require `ctags` at all).
+The behaviour is somehow similar to jumping to `ctags` symbols in `Vim` editor and back to initial position (however, to make it clear, this extension does not require `ctags` at all).
 
 ## Features
 
@@ -15,6 +15,10 @@ The navigation operations are:
   * **got to next position** (up on stack) - `Alt+Shift+]` - jump to next position save in stack
 
 Note: for MacOS, use `Option` key instead of `Alt`.
+
+A screenshot while jumping to declaration of symbols and back with this extension enabled:
+
+![Usage Example](images/vscode-goto-symbol-stack.gif)
 
 ### Navigation Notes
 
