@@ -22,7 +22,7 @@ Note: for MacOS, use `Option` key instead of `Alt`.
 
 A screenshot while jumping to declaration of symbols and back with this extension enabled:
 
-![Usage Example](images/vscode-goto-symbol-stack.gif)
+![Usage Example](https://raw.githubusercontent.com/miconda/vscode-goto-symbol-stack/master/images/vscode-goto-symbol-stack.gif)
 
 ### Navigation Notes
 
