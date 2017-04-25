@@ -18,15 +18,19 @@
         "commands": [
             {
                 "command": "extension.goto-symbol-stack.goToSymbolDeclaration",
-                "title": "GoToSymbolStack: save position on top of the stack and go to symbol declaration"
+                "title": "GoToSymbolStack: goToSymbolDeclaration - save position on top of the stack and go to symbol declaration"
             },
             {
                 "command": "extension.goto-symbol-stack.goPrevOnStack",
-                "title": "GoToSymbolStack: go to previous position in stack"
+                "title": "GoToSymbolStack: goPrevOnStack - go to previous position in stack"
             },
             {
                 "command": "extension.goto-symbol-stack.goNextOnStack",
-                "title": "GoToSymbolStack: go to next position in stack"
+                "title": "GoToSymbolStack: goNextOnStack - go to next position in stack"
+            },
+            {
+                "command": "extension.goto-symbol-stack.clearFilePosStack",
+                "title": "GoToSymbolStack: clearFilePosStack - empty the file positions stack"
             }
         ],
         "keybindings": [

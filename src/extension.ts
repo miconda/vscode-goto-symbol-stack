@@ -17,6 +17,8 @@ export function activate(context: vscode.ExtensionContext) {
                     () => goToSymbolStack.goPrevOnStack()));
     context.subscriptions.push(vscode.commands.registerCommand('extension.goto-symbol-stack.goNextOnStack',
                     () => goToSymbolStack.goNextOnStack()));
+    context.subscriptions.push(vscode.commands.registerCommand('extension.goto-symbol-stack.clearFilePosStack',
+                    () => goToSymbolStack.clearFilePosStack()));
     vscode.workspace.onDidChangeTextDocument((textChanges) => { goToSymbolStack.applyTextChanges(textChanges); } );
 }
 

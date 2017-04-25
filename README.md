@@ -36,7 +36,7 @@ Initial version has been developed using VSCode v1.11.2, but it should work for 
 
 ## Extension Settings
 
-Following VSCode commands and key bindings are exported by this extension.
+Following VSCode commands with key bindings are exported by this extension.
 
 ```
     {
@@ -54,6 +54,27 @@ Following VSCode commands and key bindings are exported by this extension.
 ```
 
 Key bindings can be changed via VSCode preferences.
+
+All the VSCommands exported by this extension are presented next.
+
+```
+    {
+        "command": "extension.goto-symbol-stack.goToSymbolDeclaration",
+        "title": "GoToSymbolStack: goToSymbolDeclaration - save position on top of the stack and go to symbol declaration"
+    },
+    {
+        "command": "extension.goto-symbol-stack.goPrevOnStack",
+        "title": "GoToSymbolStack: goPrevOnStack - go to previous position in stack"
+    },
+    {
+        "command": "extension.goto-symbol-stack.goNextOnStack",
+        "title": "GoToSymbolStack: goNextOnStack - go to next position in stack"
+    },
+    {
+        "command": "extension.goto-symbol-stack.clearFilePosStack",
+        "title": "GoToSymbolStack: clearFilePosStack - empty the file positions stack"
+    }
+```
 
 ## Installation
 
