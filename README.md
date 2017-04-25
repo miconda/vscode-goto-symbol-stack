@@ -103,7 +103,6 @@ Tested only on MacOS on files with C code.
 
 ## ToDo
 
-  * command to clear the positions stack
   * command to show details of the positions stored in the stack
   * ...
 
@@ -119,6 +118,10 @@ Daniel-Constantin Mierla (asipto.com)
 License: MIT
 
 ## Release Notes
+
+### 1.0.2 (2017-04-25)
+
+  * added command to clear the file positions stack
 
 ### 1.0.1 (2017-04-24)
 
