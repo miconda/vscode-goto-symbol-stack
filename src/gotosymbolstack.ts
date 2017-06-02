@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import * as path from 'path';
 
 export class GoToFilePosition {
     textFile: string;
@@ -13,7 +14,7 @@ export class GoToSymbolStack {
     private _statusBarItem: vscode.StatusBarItem;
     constructor() {
         if (!this._statusBarItem) {
-            this._statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
+            this._statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 10);
         }
         /* get the current text editor */
         let editor = vscode.window.activeTextEditor;
@@ -24,8 +25,35 @@ export class GoToSymbolStack {
         this.updateCurrent();
         this._statusBarItem.show();
     }
+
+    getRelativePath(filePath: string) {
+        if (!path.isAbsolute(filePath)) {
+            // path invalid so ignore
+            return "(invalid) " + filePath;
+        }
+        if (filePath.indexOf(vscode.workspace.rootPath) == 0) {
+            filePath = path.relative(vscode.workspace.rootPath, filePath);
+        }
+
+        return filePath;
+    }
+
+    updateToolTip() {
+        let tooltip = "";
+        let stackCnt = 1;
+        this.filePosStack.forEach(filePos => {
+            //vscode.window.activeTextEditor.document.offsetAt(filePos.textPosition)
+            tooltip = (stackCnt++) + ") " + this.getRelativePath(filePos.textFile) + " (" + filePos.textPosition.line + ")" + "\n" + tooltip;
+        });
+        this._statusBarItem.tooltip = tooltip; 
+    }
+
     updateCurrent() {
-        this._statusBarItem.text = "GoToSymbolStack: " + this.crtStackIndex + "/" + this.maxStackIndex;
+        if (this.crtStackIndex > 0) {
+            this._statusBarItem.text = `$(link-external) ` + this.getRelativePath(this.filePosStack[this.crtStackIndex - 1].textFile) + " (" + this.crtStackIndex + "/" + this.maxStackIndex + ")"; 
+        } else {
+            this._statusBarItem.text = `$(link-external) ` + this.crtStackIndex + "/" + this.maxStackIndex;
+        }
     }
     goToFilePosition(vStackIdx: number) {
         if (vscode.window.activeTextEditor.document.fileName === this.filePosStack[vStackIdx].textFile) {
@@ -46,6 +74,7 @@ export class GoToSymbolStack {
         this.filePosStack[vStackIdx] = new GoToFilePosition();
         this.filePosStack[vStackIdx].textFile = vTextEditor.document.fileName;
         this.filePosStack[vStackIdx].textPosition = vTextEditor.selection.active;
+        this.updateToolTip();
     }
     logFilePosition(vTextMsg: string, vStackIdx: number) {
         return;
