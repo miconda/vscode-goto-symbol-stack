@@ -71,6 +71,11 @@
                                 "type": "string",
                                 "description": "Positioned Filename"
                             },
+                            "viewColumn": {
+                                "type": "integer",
+                                "default": 0,
+                                "description": "textEditor viewColumn"
+                            },
                             "textPosition": {
                                 "type": "object",
                                 "title": "vscode.Position object",

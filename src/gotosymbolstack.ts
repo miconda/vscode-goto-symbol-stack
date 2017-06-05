@@ -3,10 +3,12 @@ import * as path from 'path';
 
 export class GoToFilePosition {
     textFile: string;
+    viewColumn: number;
     textPosition: vscode.Position;
 
-    constructor(filename: string, line: number, character: number) {
+    constructor(filename: string, viewColumn: number, line: number, character: number) {
         this.textFile = filename;
+        this.viewColumn = viewColumn;
         this.textPosition = new vscode.Position(line, character);
     }
 }
@@ -62,24 +64,36 @@ export class GoToSymbolStack {
         }
         this.saveGotoSymbolStack();
     }
-    goToFilePosition(vStackIdx: number) {
-        if (vscode.window.activeTextEditor.document.fileName === this.filePosStack[vStackIdx].textFile) {
-            vscode.window.activeTextEditor.selection = new vscode.Selection(this.filePosStack[vStackIdx].textPosition, this.filePosStack[vStackIdx].textPosition);
-        } else {
-            vscode.workspace.openTextDocument( this.filePosStack[vStackIdx].textFile )
-                .then( ( doc ) => {
-                        return vscode.window.showTextDocument( doc );
-                    } )
-                .then( textEditor => {
-                        textEditor.selection = new vscode.Selection(this.filePosStack[vStackIdx].textPosition, this.filePosStack[vStackIdx].textPosition);
-                    } );
+    getActiveColumn(vStackIdx: number) {
+        let activeEditor = vscode.window.visibleTextEditors.filter(editor => editor.viewColumn == this.filePosStack[vStackIdx].viewColumn);
+        if (activeEditor.length) {
+            return activeEditor[0].viewColumn;
         }
-        vscode.window.activeTextEditor.revealRange(new vscode.Range(this.filePosStack[vStackIdx].textPosition,
-                    this.filePosStack[vStackIdx].textPosition), vscode.TextEditorRevealType.InCenterIfOutsideViewport);
+        return vscode.window.activeTextEditor.viewColumn;
+    }
+    goToFilePosition(vStackIdx: number) {
+        let activeColumn = this.getActiveColumn(vStackIdx);
+        let vscodeSelection = new vscode.Selection(this.filePosStack[vStackIdx].textPosition, this.filePosStack[vStackIdx].textPosition);
+        let vscodeRange = new vscode.Range(this.filePosStack[vStackIdx].textPosition, this.filePosStack[vStackIdx].textPosition); 
+        if (vscode.window.activeTextEditor.viewColumn === activeColumn &&
+            vscode.window.activeTextEditor.document.fileName === this.filePosStack[vStackIdx].textFile) {
+            vscode.window.activeTextEditor.selection = vscodeSelection;
+            vscode.window.activeTextEditor.revealRange(vscodeRange, vscode.TextEditorRevealType.InCenterIfOutsideViewport);
+        } else {
+            vscode.workspace.openTextDocument(this.filePosStack[vStackIdx].textFile)
+                .then((doc) => {
+                    return vscode.window.showTextDocument(doc, activeColumn);
+                })
+                .then(textEditor => {
+                    textEditor.selection = vscodeSelection;
+                    textEditor.revealRange(vscodeRange, vscode.TextEditorRevealType.InCenterIfOutsideViewport);
+                });
+        }
     }
     saveFilePosition(vTextEditor: vscode.TextEditor, vStackIdx: number) {
         this.filePosStack[vStackIdx] = new GoToFilePosition(
             vTextEditor.document.fileName, 
+            vTextEditor.viewColumn,
             vTextEditor.selection.active.line, 
             vTextEditor.selection.active.character);
         this.updateToolTip();
@@ -152,7 +166,6 @@ export class GoToSymbolStack {
         this.updateCurrent();
     }
     applyTextChanges(changes: vscode.TextDocumentChangeEvent) {
-        const textEditor = vscode.window.activeTextEditor;
         const textDocument = changes.document;
         changes.contentChanges.forEach(change => {
             console.log(change);
@@ -176,6 +189,7 @@ export class GoToSymbolStack {
         configuration['filePositionInfo'].forEach(position => {
             this.filePosStack[stackCnt++] = new GoToFilePosition(
                 position.textFile, 
+                position.viewColumn,
                 position.textPosition.line, 
                 position.textPosition.character);
         });
