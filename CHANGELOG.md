@@ -1,3 +1,9 @@
+## 1.1.0 (2017-06-08)
+
+  * added the ability to save and load stack information for workspace
+  * improved multi-editor group behavior
+  * support to move stack info with multiple view column
+
 ## 1.0.3 (2017-06-02)
 
   * added full stack info on tooltip

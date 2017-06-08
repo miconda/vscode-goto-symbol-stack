@@ -110,6 +110,15 @@ Contributions are welcome, use Github.com pull requests of the project:
 
   * https://github.com/miconda/vscode-goto-symbol-stack
 
+## Developers
+
+Initial Author:
+
+  * Daniel-Constantin Mierla ([@miconda](https://github.com/miconda))
+
+Contributors:
+
+  * [@newro](https://github.com/newro)
 
 ## Copyright
 
@@ -119,11 +128,11 @@ License: MIT
 
 ## Release Notes
 
-### 1.0.3 (2017-06-02)
+### 1.1.0 (2017-06-08)
 
-  * added full stack info on tooltip
-  * updated stack info on statusbar
-  * updated statusbar priority for more left position
+  * added the ability to save and load stack information for workspace
+  * improved multi-editor group behavior
+  * support to move stack info with multiple view column
 
 For release notes of older versions, see [CHANGELOG.md](https://github.com/miconda/vscode-goto-symbol-stack/blob/master/CHANGELOG.md) file.
 
