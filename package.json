@@ -46,7 +46,57 @@
                 "command": "extension.goto-symbol-stack.goNextOnStack",
                 "key": "alt+shift+]"
             }
-        ]
+        ],
+        "configuration": {
+            "type" : "object",
+            "title": "gotoSymbolStack workSpace Context configuration",
+            "properties": {
+                "gotoSymbolStack.currentStackPosition": {
+                    "type": "integer",
+                    "default": 0,
+                    "description": "Current Position on gotoSymbolStack"
+                },
+                "gotoSymbolStack.maxStackPosition": {
+                    "type": "integer",
+                    "default": 0,
+                    "description": "Max position count on gotoSymbolStack"
+                },
+                "gotoSymbolStack.filePositionInfo": {
+                    "type": "array",
+                    "items": {
+                        "type" : "object",
+                        "title" : "GoToFilePosition objects",
+                        "properties": {
+                            "textFile": {
+                                "type": "string",
+                                "description": "Positioned Filename"
+                            },
+                            "viewColumn": {
+                                "type": "integer",
+                                "default": 0,
+                                "description": "textEditor viewColumn"
+                            },
+                            "textPosition": {
+                                "type": "object",
+                                "title": "vscode.Position object",
+                                "properties": {
+                                    "line": {
+                                        "type": "integer",
+                                        "description": "Position info for line"
+                                    },
+                                    "character": {
+                                        "type": "integer",
+                                        "description": "Position info for character"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": [],
+                    "description": "Symbol position infos"
+                }
+            }
+        }
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
