@@ -128,11 +128,10 @@ License: MIT
 
 ## Release Notes
 
-### 1.1.0 (2017-06-08)
+### 1.1.1 (2017-07-11)
 
-  * added the ability to save and load stack information for workspace
-  * improved multi-editor group behavior
-  * support to move stack info with multiple view column
+  * added the option in settings to enable or disable positions stack storage
+  * option named `gotoSymbolStack.storeStackPosition` (default `true`)
 
 For release notes of older versions, see [CHANGELOG.md](https://github.com/miconda/vscode-goto-symbol-stack/blob/master/CHANGELOG.md) file.
 

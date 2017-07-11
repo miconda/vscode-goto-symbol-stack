@@ -1,3 +1,8 @@
+## 1.1.1 (2017-07-11)
+
+  * added the option in settings to enable or disable positions stack storage
+  * option named `gotoSymbolStack.storeStackPosition` (default `true`)
+
 ## 1.1.0 (2017-06-08)
 
   * added the ability to save and load stack information for workspace
