@@ -10,7 +10,7 @@ import {GoToSymbolStack} from './gotosymbolstack';
 export function activate(context: vscode.ExtensionContext) {
 
     let goToSymbolStack = new GoToSymbolStack();
- 
+
     context.subscriptions.push(vscode.commands.registerCommand('extension.goto-symbol-stack.goToSymbolDeclaration',
                     () => goToSymbolStack.goToSymbolDeclaration(vscode.window.activeTextEditor)));
     context.subscriptions.push(vscode.commands.registerCommand('extension.goto-symbol-stack.goPrevOnStack',

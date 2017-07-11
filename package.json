@@ -2,7 +2,7 @@
     "name": "goto-symbol-stack",
     "displayName": "goto-symbol-stack",
     "description": "Jump to the declaration of a symbol, track positions in a stack, navigate back and forth",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "publisher": "miconda",
     "engines": {
         "vscode": "^1.10.0"
@@ -51,6 +51,11 @@
             "type" : "object",
             "title": "gotoSymbolStack workSpace Context configuration",
             "properties": {
+                "gotoSymbolStack.storeStackPosition": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable or disable the storage for stack positions"
+                },
                 "gotoSymbolStack.currentStackPosition": {
                     "type": "integer",
                     "default": 0,
