@@ -1,10 +1,14 @@
 # GoTo-Symbol-Stack VSCode Extension
 
-Extension for Visual Studio Code (VSCode) editor to jump to symbol (function, variable, ...) declaration, track the positions in a stack, navigate back and forth.
+Extension for Visual Studio Code (VSCode) editor to jump to symbol (function, variable, ...) declaration of the word under cursor, track the positions in a stack, navigate back and forth.
 
-It is relying on the same function used natively by VSCode to jump to the symbol (the one with default key `F12`), but the native jump back (default `Cmd/Ctrl+-`) is tracking differently the positions (eg., storing when editing or when scrolling and making a short break), therefore this module provides an alternative, storing the positions only when jump to symbol is triggered.
+It is relying on the same function used natively by VSCode to jump to the symbol (the one with default key `F12`), but the native jump back (default `Cmd/Ctrl+-`) is tracking differently the positions (i.e., storing when editing or when scrolling and making a short break), therefore this module provides an alternative, storing the positions only when jump to symbol is triggered.
 
 The behaviour is somehow similar to jumping to `ctags` symbols in `Vim` editor and back to initial position (however, to make it clear, this extension does not require `ctags` at all).
+
+Another feature is to search for a symbol, similar to the default behaviour of `Ctrl+t` (`Cmd+t`), but saves the current possition before opening the search form.
+
+The content of the positions stack is saved in the local settings of the current workspace. This option can be disabled from VSCode settings via `gotoSymbolStack.storeStackPosition` switch.
 
 The code for this extension is hosted at:
 
@@ -16,7 +20,9 @@ The navigation operations are:
 
   * **jump to symbol** (go to declaration) - `Alt+]` - save current position on top of the stack and jump to symbol definition
   * **go to previous position** (down on stack) - `Alt+[` - jump to previous position saved in stack
-  * **got to next position** (up on stack) - `Alt+Shift+]` - jump to next position save in stack
+  * **go to next position** (up on stack) - `Alt+Shift+]` - jump to next position saved in stack
+  * **search symbol** (go to symbol search form) - `Alt+t` - save current position on top of the stack and open workspace search symbol form
+  * **clear positions stack** (empty stack) - via commands pannel - clear all stored positions in stack
 
 Note: for MacOS, use `Option` key instead of `Alt`.
 
@@ -36,25 +42,6 @@ Initial version has been developed using VSCode v1.11.2, but it should work for 
 
 ## Extension Settings
 
-Following VSCode commands with key bindings are exported by this extension.
-
-```
-    {
-        "command": "extension.goto-symbol-stack.goToSymbolDeclaration",
-        "key": "alt+]"
-    },
-    {
-        "command": "extension.goto-symbol-stack.goPrevOnStack",
-        "key": "alt+["
-    },
-    {
-        "command": "extension.goto-symbol-stack.goNextOnStack",
-        "key": "alt+shift+]"
-    }
-```
-
-Key bindings can be changed via VSCode preferences.
-
 All the VSCommands exported by this extension are presented next.
 
 ```
@@ -73,8 +60,36 @@ All the VSCommands exported by this extension are presented next.
     {
         "command": "extension.goto-symbol-stack.clearFilePosStack",
         "title": "GoToSymbolStack: clearFilePosStack - empty the file positions stack"
+    },
+    {
+        "command": "extension.goto-symbol-stack.goToSearchSymbolDeclaration",
+        "title": "GoToSymbolStack: goToSearchSymbolDeclaration - save position on top of the stack and open form to search symbol declaration"
     }
 ```
+
+Following VSCode commands have key bindings.
+
+```
+    {
+        "command": "extension.goto-symbol-stack.goToSymbolDeclaration",
+        "key": "alt+]"
+    },
+    {
+        "command": "extension.goto-symbol-stack.goPrevOnStack",
+        "key": "alt+["
+    },
+    {
+        "command": "extension.goto-symbol-stack.goNextOnStack",
+        "key": "alt+shift+]"
+    },
+    {
+        "command": "extension.goto-symbol-stack.goToSearchSymbolDeclaration",
+        "key": "alt+t"
+    }
+```
+
+Key bindings can be changed via VSCode preferences.
+
 
 ## Installation
 
@@ -128,10 +143,10 @@ License: MIT
 
 ## Release Notes
 
-### 1.1.1 (2017-07-11)
+### 1.1.2 (2017-07-29)
 
-  * added the option in settings to enable or disable positions stack storage
-  * option named `gotoSymbolStack.storeStackPosition` (default `true`)
+  * added the option to save current position and open symbol search form
+  * `Alt+t` - default key binding for opening symbol search form
 
 For release notes of older versions, see [CHANGELOG.md](https://github.com/miconda/vscode-goto-symbol-stack/blob/master/CHANGELOG.md) file.
 

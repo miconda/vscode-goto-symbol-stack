@@ -1,3 +1,8 @@
+## 1.1.2 (2017-07-29)
+
+  * added the option to save current position and open symbol search form
+  * `Alt+t` - default key binding for opening symbol search form
+
 ## 1.1.1 (2017-07-11)
 
   * added the option in settings to enable or disable positions stack storage
