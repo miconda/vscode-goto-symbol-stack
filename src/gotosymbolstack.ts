@@ -125,16 +125,16 @@ export class GoToSymbolStack {
     showCrtStackIndex() {
         vscode.window.showInformationMessage("GoToSymbolStack: (" + this.crtStackIndex + ":" + this.maxStackIndex + ")")
     }
-    goToSymbolDeclaration(crtTextEditor: vscode.TextEditor) {
+    goToSymbolDeclarationCmd(crtTextEditor: vscode.TextEditor, vCmd: string) {
         let nextIdx = this.crtStackIndex + 1;
         if(this.testTopFilePosition(crtTextEditor)) {
             this.logFilePosition("stop to", this.crtStackIndex - 1);
-            vscode.commands.executeCommand('editor.action.goToDeclaration');
+            vscode.commands.executeCommand(vCmd);
             return;
         }
         this.saveFilePosition(crtTextEditor, this.crtStackIndex);
         this.logFilePosition("jump to", this.crtStackIndex);
-        vscode.commands.executeCommand('editor.action.goToDeclaration');
+        vscode.commands.executeCommand(vCmd);
         /* update stack index details only if position changed */
         if (nextIdx >= 100) {
             /* todo: shift back items */
@@ -146,6 +146,12 @@ export class GoToSymbolStack {
         this.crtStackIndex = nextIdx;
 
         this.updateCurrent();
+    }
+    goToSymbolDeclaration(crtTextEditor: vscode.TextEditor) {
+        this.goToSymbolDeclarationCmd(crtTextEditor, 'editor.action.goToDeclaration');
+    }
+    goToSearchSymbolDeclaration(crtTextEditor: vscode.TextEditor) {
+        this.goToSymbolDeclarationCmd(crtTextEditor, 'workbench.action.showAllSymbols');
     }
     goPrevOnStack() {
         if(this.crtStackIndex<=0) {

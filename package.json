@@ -31,6 +31,10 @@
             {
                 "command": "extension.goto-symbol-stack.clearFilePosStack",
                 "title": "GoToSymbolStack: clearFilePosStack - empty the file positions stack"
+            },
+            {
+                "command": "extension.goto-symbol-stack.goToSearchSymbolDeclaration",
+                "title": "GoToSymbolStack: goToSearchSymbolDeclaration - save position on top of the stack and open form to search symbol declaration"
             }
         ],
         "keybindings": [
@@ -45,6 +49,10 @@
             {
                 "command": "extension.goto-symbol-stack.goNextOnStack",
                 "key": "alt+shift+]"
+            },
+            {
+                "command": "extension.goto-symbol-stack.goToSearchSymbolDeclaration",
+                "key": "alt+t"
             }
         ],
         "configuration": {
